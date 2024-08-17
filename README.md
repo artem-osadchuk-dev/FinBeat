@@ -52,6 +52,17 @@ The project is organized into several layers to ensure clean architecture princi
 
 Both requests and responses are logged into the database for monitoring and auditing purposes. Logs include information such as the HTTP method, URL, headers, body, status code, and timestamp.
 
+## Reason for Database Separation
+In this project, I've implemented a separation of concerns by utilizing two distinct databases:
+
+### Data Storage Database
+This database is dedicated to storing and managing the primary business data required for the application's functionality. It ensures that the core operations of the application are isolated from any auxiliary processes, maintaining optimal performance and security.
+
+### Logging Database
+This database is specifically used to log and track all incoming requests and outgoing responses. By separating the logging data from the main business data, we reduce the risk of performance degradation and allow for more specialized database optimizations and maintenance practices. This separation also enhances security by limiting access to sensitive business data while still allowing for detailed logging and monitoring.
+
+The separation of these databases helps in maintaining a clear boundary between business logic and operational logging, which leads to easier scaling, improved security, and better management of each database's workload.
+
 ## Installation and Setup
 
 To run the project locally:
