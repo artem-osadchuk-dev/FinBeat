@@ -1,4 +1,5 @@
-﻿using FinBeat.Domain.Entities.SortedData;
+﻿using FinBeat.Domain.Entities.Logging;
+using FinBeat.Domain.Entities.SortedData;
 using FinBeat.Domain.Repositories.SortedData;
 using FinBeat.Infrastructure.Persistence.Contexts.SortedData;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ public class SortedDataRepository : ISortedDataRepository
 
     public async Task SaveDataAsync(IEnumerable<DataRecord> dataEntities)
     {
+        ArgumentNullException.ThrowIfNull(dataEntities, nameof(dataEntities));
+
         _context.DataRecords.RemoveRange(_context.DataRecords);
 
         var orderedEntities = dataEntities.OrderBy(e => e.Code).ToList();
